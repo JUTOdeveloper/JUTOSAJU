@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&amp;subset=korean" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="./yangumm.js"></script>
+
+<style>
+
+html,body{
+height:100%;
+}
+@import url("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+.login-block{
+    background: #DE6262;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom, #FFB88C, #DE6262);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to bottom, #FFB88C, #DE6262); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+float:left;
+width:100%;
+padding : 50px 0;
+}
+.banner-sec{background:url(https://static.pexels.com/photos/33972/pexels-photo.jpg)  no-repeat left bottom; background-size:cover; min-height:500px; border-radius: 0 10px 10px 0; padding:0;}
+.container{background:#fff; border-radius: 10px; box-shadow:15px 20px 0px rgba(0,0,0,0.1);}
+.carousel-inner{border-radius:0 10px 10px 0;}
+.carousel-caption{text-align:left; left:5%;}
+.login-sec{padding: 50px 30px; position:relative;}
+.login-sec .copy-text{position:absolute; width:80%; bottom:20px; font-size:13px; text-align:center;}
+.login-sec .copy-text i{color:#FEB58A;}
+.login-sec .copy-text a{color:#E36262;}
+.login-sec h2{margin-bottom:30px; font-weight:800; font-size:30px; color: #DE6262;}
+.login-sec h2:after{content:" "; width:100px; height:5px; background:#FEB58A; display:block; margin-top:20px; border-radius:3px; margin-left:auto;margin-right:auto}
+.btn-login{background: #DE6262; color:#fff; font-weight:600;}
+.banner-text{width:70%; position:absolute; bottom:40px; padding-left:20px;}
+.banner-text h2{color:#fff; font-weight:600;}
+.banner-text h2:after{content:" "; width:100px; height:5px; background:#FFF; display:block; margin-top:20px; border-radius:3px;}
+.banner-text p{color:#fff;}
+</style>
+<script type="text/javascript">
+
+
+var wid=window.outerWidth;
+var hei=window.outerHeight;
+var widper;
+var heiper;
+var a=hei;
+var gdc=0;
+if(wid>hei){
+  a=wid;
+}
+for(var i=1 ;i<=a;i++){
+  if(wid%i==0&&hei%i==0){
+    gdc=i;
+  }
+}
+widper=wid/gdc;
+heiper=hei/gdc;
+if((widper/heiper)==(1)){
+$(function(){
+
+});
+}
+else if((widper/heiper)>(1)){
+$(function(){
+$("#floater").css("height", "10%");
+$("#image").css("height", "10%");
+});
+}
+else{
+ 
+$(function(){
+
+});
+
+}
+
+
+
+var name = location.search;
+var aaa= name.split('?');
+var arr =aaa[1].split('&');
+var day1=arr[0].split('%27');
+var mon1=arr[1].split('%27');
+var year1=arr[2].split('%27');
+var time1=arr[3].split('%27');
+var sex1=arr[4].split('%27');
+var yangumm1=arr[5].split('%27');
+var yoonchk1=arr[6].split('%27');
+var day=day1[1];
+var mon=mon1[1];
+var year=year1[1];
+var time=time1[1];
+var sex=sex1[1];
+var yoonchk=yoonchk1[1];
+var dayhigh;
+var daylow;
+var timehigh;
+var timelow;
+var monhigh;
+var monlow;
+var yearzizi
+var yangumm=yangumm1[1];
+//양음력구분! 양력일때는 음력날짜로 바꾸어준다
+if(yangumm=='umm'){
+
+if(yoonchk=='true'){
+var all=yangummchk(year,mon,day,true,false,true);
+var nn=all.split(',');
+var dayhigh=nn[5];
+var daylow=nn[6];
+
+}
+else {
+var all=yangummchk(year,mon,day,false,false,true);
+var nn=all.split(',');
+var dayhigh=nn[5];
+var daylow=nn[6];
+
+}
+}
+else{
+var all=yangummchk(year,mon,day,true,true,false);
+var nn=all.split(',');
+year=parseInt(nn[2]);
+mon=parseInt(nn[3]);
+day=parseInt(nn[4]);
+var dayhigh=nn[5];
+var daylow=nn[6];
+
+}
+//이미지와 글자 동적설정
+$(document).ready(function() {
+
+
+ yearzizi=year%12;
+yearzizi=yearzizi-3;
+//년주의 천간과 지지를 구하고
+if(yearzizi<1){
+yearzizi=12+yearzizi;
+}
+
+ var yearchun=year%10;
+yearchun=yearchun-3;
+if(yearchun<1){
+yearchun=10+yearchun;
+}
+
+//년주 이미지 배치
+$("#yearhigh").children().remove();
+var html="<img src='./image/chun"+yearchun+".png' class='img-thumbnail'>";
+ $("#yearhigh").append(html);
+ $("#yearlows").children().remove();
+var html="<img src='./image/zizi"+yearzizi+".png' class='img-thumbnail'>";
+ $("#yearlows").append(html);
+ 
+ 
+ //일주의 양음력에서 구한곳에서구해왔으므로 배치만하면됩니다.
+ dayhigh=parseInt(dayhigh)+1
+ $("#dayhigh").children().remove();
+var html="<img src='./image/chun"+dayhigh+".png' class='img-thumbnail'>";
+ $("#dayhigh").append(html);
+  daylow=parseInt(daylow)+1;
+
+  $("#daylow").children().remove();
+var html="<img src='./image/zizi"+daylow+".png' class='img-thumbnail'>";
+ $("#daylow").append(html);
+ 
+ 
+ 
+ 
+ //월주의 천간 구하기
+if(yearchun==1||yearchun==6){
+monhigh=change(mon,2);
+
+}
+else if(yearchun==2||yearchun==7){
+monhigh=change(mon,4);
+}
+else if(yearchun==3||yearchun==8){
+monhigh=change(mon,6);
+}
+else if(yearchun==4||yearchun==9){
+monhigh=change(mon,8);
+}
+else{
+monhigh=change(mon,0);
+}
+//월주의 지지구하기
+  monlow=mon+2;
+if(monlow>12){
+
+monlow=monlow-12;
+}
+
+//월주의 천간과 지지 이미지 배치
+  $("#monhigh").children().remove();
+var html="<img src='./image/chun"+monhigh+".png' class='img-thumbnail'>";
+ $("#monhigh").append(html);
+  $("#monlow").children().remove();
+var html="<img src='./image/zizi"+monlow+".png' class='img-thumbnail'>";
+ $("#monlow").append(html);
+
+ //시주구하기
+ //시주를 모를경우 이미지배치
+ if(time==0){
+$(".si").children().remove();
+var html="<img src='./dontknow.png' class='img-thumbnail'>";
+ $(".si").append(html);
+}
+//시주를 알경우 시주구하기
+else{
+if(dayhigh==1||dayhigh==6){
+timehigh=change(time,0);
+}
+else if(dayhigh==2||dayhigh==7){
+timehigh=change(time,2);
+}
+else if(dayhigh==3||dayhigh==8){
+timehigh=change(time,4);
+}
+else if(dayhigh==4||dayhigh==9){
+
+timehigh=change(time,6);
+}
+else{
+timehigh=change(time,8);
+}
+//시주 이미지배치
+$("#timehigh").children().remove();
+var html="<img src='./image/chun"+timehigh+".png' class='img-thumbnail'>";
+ $("#timehigh").append(html);
+$("#timelow").children().remove();
+var html="<img src='./image/zizi"+time+".png' class='img-thumbnail'>";
+ $("#timelow").append(html);
+}
+ 
+//동물이미지 배치
+  $("#animal").children().remove();
+var html="<img src='./image/img"+dayhigh+daylow+".png' class='img-fluid' alt='Responsive image'>";
+ $("#animal").append(html);
+
+//초기에 무슨일주인지 알려주는 코드 
+ var chun=new Array("갑","을","병","정","무","기","경","신","임","계");
+ var zizi= new Array("자","축","인","묘","진","사","오","미","신","유","술","해");
+  var gan = new Array("甲","乙","丙","丁","戊","己","庚","辛","壬","癸");
+  var jee = new Array("子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥");
+$("#one").children().remove();
+var html=
+"<div style='height:5%'></div>"+
+"<div style='text-align:center;'>"+
+"<p>"+
+"<h2>나의일주는</h2>"+
+"<h1>"+gan[dayhigh-1]+jee[daylow-1]+"</h1>"+
+"<h4>"+chun[dayhigh-1]+zizi[daylow-1]+"일주</h4>"+
+"</P>"
+ $("#one").append(html);
+
+
+ 
+ });
+ //월주와 시주구하는 함수
+ function change(v,a){
+ var c;
+c=parseInt(v)+parseInt(a);
+if(c>10){
+c=c-10;}
+return c;
+ }
+ //첫번째 버튼을클릭했을때
+ /*function onechk(){
+ var chun=new Array("갑","을","병","정","무","기","경","신","임","계");
+ var zizi= new Array("자","축","인","묘","진","사","오","미","신","유","술","해");
+  var gan = new Array("甲","乙","丙","丁","戊","己","庚","辛","壬","癸");
+  var jee = new Array("子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥");
+$("#one").children().remove();
+var html=
+"<div style='height:5%'></div>"+
+"<div style='text-align:center;'>"+
+"<p>"+
+"<h2>나의일주는</h2>"+
+"<h1>"+gan[dayhigh-1]+jee[daylow-1]+"</h1>"+
+"<h4>"+chun[dayhigh-1]+zizi[daylow-1]+"일주</h4>"+
+"</P>"
+ $("#one").append(html);
+ }*/
+ //두번째 버튼을클릭했을때
+  /*function twochk(){
+$("#one").children().remove();
+var html=
+"<div style='height:5%'></div>"+
+"<div style='text-align:center;'>"+
+"<p>"+
+"<h3>참고사항!</h3>"+
+"1.이사이트는 현재 자신에게 무슨 살이있는지만 알려주는 사이트입니다<br>"+
+"2.살로 전체사주를 보는것이 아닌 사주 전체요소를 참고해서 보는것이니 참고만하세요!"+
+"</P>"
+ $("#one").append(html);
+ }*/
+ //마지막 버튼을 클릭했을때
+ /*function threechk(){
+ var y,m,d,t;
+ 
+$("#one").children().remove();
+var html=
+"<div style='height:5%'></div>"+
+"<div style='text-align:center;'>"+
+"<p>"+
+"년:"+y+"</br>"+
+"월:"+m+"</br>"+
+"일"+d+"</br>"+
+"시"+t+"</br>"+
+"</P>"
+ $("#one").append(html);
+ }*/
+ 
+ function hong(){
+ if(dayhigh==9){
+ if(daylow==1){
+ d="홍염살";}
+  else{
+d="";
+ }
+ if(monlow==1){
+ m="홍염살";
+ }
+   else{
+m="";
+ }
+ if(yearzizi==1){
+ y="홍염살";
+ }
+   else{
+y="";
+ }
+if(timelow==1){
+ t="홍염살";
+ }
+    else{
+t="";
+ }
+
+ }
+ }
+</script>
+
+</head>
+
+<body class="login-block">
+
+<div id="floater"></div>
+    <div class="container">
+	<div class="row">
+	<div class="col-lg-7 col-12">
+<div id="image"></div>
+<div class="row">
+<div class="col-lg-6" id="animal">
+
+<img src="./image/img35.png" class="img-fluid" alt="Responsive image"/>
+
+</div>
+<div class="col-lg-6" style="text-align:center;">
+<div style="height:25%"></div>
+<!--<div class="btn-group btn-group-toggle" data-toggle="buttons">
+  <label class="btn btn-outline-danger active">
+    <input type="radio" name="options" id="option1" autocomplete="off" checked onchange="javascript:onechk();">one
+  </label>
+  <label class="btn btn-outline-danger">
+    <input type="radio" name="options" id="option2" autocomplete="off" onchange="javascript:twochk();">two
+  </label>
+  <label class="btn btn-outline-danger">
+    <input type="radio" name="options" id="option3" autocomplete="off" onchange="javascript:threechk();">three
+  </label>
+</div>-->
+<div id="one">
+<div style="height:5%"></div>
+<div style="text-align:center;">
+<p>
+<h2>나의일주는</h2>
+<h1>壬寅</h1>
+<h4>임인일주</h4>
+물가에 있는 호랑이
+</P>
+</div>
+</div>
+</div>
+</div>
+
+		    
+		</div>
+		<div class="col-lg-5 col-12 login-sec">
+		    <h2 class="text-center">RESULT</h2>
+		    <div class="row" style="text-align:center;">
+			<div class="col-3 lead">시</div>
+			<div class="col-3 lead">일</div>
+			<div class="col-3 lead">월</div>
+			<div class="col-3 lead">년</div>
+			</div>
+			<div class="row">
+			<div class="col-3 si" id="timehigh"><img src="./dontknow.png" class="img-thumbnail"></div>
+			<div class="col-3" id="dayhigh"><img src="./dontknow.png" class="img-thumbnail"></div>
+			<div class="col-3" id="monhigh"><img src="./dontknow.png" class="img-thumbnail"></div>
+			<div class="col-3" id="yearhigh"><img src="./dontknow.png" class="img-thumbnail"></div>
+			</div>
+			<div class="row">
+			<div class="col-3 si" id="timelow"><img src="./dontknow.png" class="img-thumbnail"></div>
+			<div class="col-3" id="daylow"><img src="./dontknow.png" class="img-thumbnail"></div>
+			<div class="col-3" id="monlow"><img src="./dontknow.png" class="img-thumbnail"></div>
+			<div class="col-3" id="yearlows"><img src="./dontknow.png" class="img-thumbnail"></div>
+			</div>
+		</div>
+
+
+</div>
+</div>
+
+</body>
+
+</html>
